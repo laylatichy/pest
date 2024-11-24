@@ -119,6 +119,8 @@ trait Testable
             self::$__latestPrs = $method->prs;
             $this->__describing = $method->describing;
             $this->__test = $method->getClosure();
+
+            $method->setUp($this);
         }
     }
 
@@ -241,8 +243,6 @@ trait Testable
         TestSuite::getInstance()->test = $this;
 
         $method = TestSuite::getInstance()->tests->get(self::$__filename)->getMethod($this->name());
-
-        $method->setUp($this);
 
         $description = $method->description;
         if ($this->dataName()) {
