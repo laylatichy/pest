@@ -73,7 +73,9 @@ pest()->in('Hooks')
         expect($_SERVER['globalHook'])
             ->toHaveProperty('afterAll')
             ->and($_SERVER['globalHook']->afterAll)
-            ->toBe(0);
+            ->toBe(0)
+            ->and($_SERVER['beforeAll'])
+            ->toBe(1);
 
         $_SERVER['globalHook']->afterAll = 1;
     });
